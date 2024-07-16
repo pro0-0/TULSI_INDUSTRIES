@@ -11,7 +11,7 @@ import {
 
 const HoverDevCards = () => {
   return (
-    <div className="p-4 mt-5 sm:mt-5  bg-black rounded-t-lg">
+    <div className="p-5 bg-black">
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <Card
           title="Address"

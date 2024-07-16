@@ -48,33 +48,42 @@ export const SwipeCarousel = () => {
   };
 
   return (
-    <div className="relative overflow-hidden bg-white py-8 " id="highlights">
-      <div className="absolute top-0 left-5 z-10 right-0 text-4xl sm:text-7xl">
-        <p className="bg-gray-100 w-[68vw] sm:w-[67vh] text-center rounded-lg bg-clip-padding backdrop-filter border border-gray-100 backdrop-blur-sm bg-opacity-40 p-3 sm:p-5">
-          HIGHLIGHTS
-        </p>
-      </div>{" "}
-      {/* Further reduced the height */}
-      <motion.div
-        drag="x"
-        dragConstraints={{
-          left: 0,
-          right: 0,
-        }}
-        style={{
-          x: dragX,
-        }}
-        animate={{
-          translateX: `-${imgIndex * 100}%`,
-        }}
-        transition={SPRING_OPTIONS}
-        onDragEnd={onDragEnd}
-        className="flex cursor-grab items-center active:cursor-grabbing"
-      >
-        <Images imgIndex={imgIndex} />
-      </motion.div>
-      <Dots imgIndex={imgIndex} setImgIndex={setImgIndex} />
-      {/* <GradientEdges /> */}
+    <div>
+      <div className="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center py-5 pb-0">
+        <div className="w-full bg-white border-t border-b rounded-md  border-gray-200  px-5 py-16 md:py-24 text-gray-800">
+          <div
+            className="relative overflow-hidden bg-white py-8 "
+            id="highlights"
+          >
+            <div className="absolute top-0 left-5 z-10 right-0 text-4xl sm:text-7xl">
+              <p className="bg-gray-100 w-[68vw] sm:w-[67vh] text-center rounded-lg bg-clip-padding backdrop-filter border border-gray-100 backdrop-blur-sm bg-opacity-40 p-3 sm:p-5">
+                HIGHLIGHTS
+              </p>
+            </div>{" "}
+            {/* Further reduced the height */}
+            <motion.div
+              drag="x"
+              dragConstraints={{
+                left: 0,
+                right: 0,
+              }}
+              style={{
+                x: dragX,
+              }}
+              animate={{
+                translateX: `-${imgIndex * 100}%`,
+              }}
+              transition={SPRING_OPTIONS}
+              onDragEnd={onDragEnd}
+              className="flex cursor-grab items-center active:cursor-grabbing"
+            >
+              <Images imgIndex={imgIndex} />
+            </motion.div>
+            <Dots imgIndex={imgIndex} setImgIndex={setImgIndex} />
+            {/* <GradientEdges /> */}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

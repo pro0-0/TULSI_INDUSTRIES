@@ -1,5 +1,16 @@
 import React from "react";
-import { Button } from "./ui/button";
+// import { Button } from "./ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 function footer_page() {
   return (
@@ -17,9 +28,73 @@ function footer_page() {
     </p> */}
               <div className="w-full md:w-44 pt-6 md:pt-0 md:ml-4">
                 <a className="bg-red-500 justify-center text-center rounded-lg shadow px-10 py-3 flex items-center  md:inline-block">
-                  <Button className="bg-red-500 justify-center text-center flex items-center">
-                    Contact US
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="bg-red-500 justify-center text-center flex items-center">
+                        Contact US
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Enquiry Form</DialogTitle>
+                        <DialogDescription>
+                          Please fill out the form below to make an enquiry.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="name" className="text-right">
+                            Name
+                          </Label>
+                          <Input
+                            id="name"
+                            placeholder="Your Name"
+                            className="col-span-3"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="mobile" className="text-right">
+                            Mobile No
+                          </Label>
+                          <Input
+                            id="mobile"
+                            placeholder="Your Mobile Number"
+                            className="col-span-3"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="email" className="text-right">
+                            Email
+                          </Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="Your Email Address"
+                            className="col-span-3"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="message" className="text-right">
+                            Message
+                          </Label>
+                          <textarea
+                            id="message"
+                            placeholder="Your Message"
+                            className="col-span-3 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            rows={4}
+                          />
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <button
+                          className="bg-black m-3 p-3 rounded-md text-white hover:bg-gray-900 text-sm font-mono"
+                          type="submit"
+                        >
+                          Submit Enquiry
+                        </button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                 </a>
               </div>
             </div>
