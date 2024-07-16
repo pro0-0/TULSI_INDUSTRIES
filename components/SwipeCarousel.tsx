@@ -16,7 +16,7 @@ const SPRING_OPTIONS = {
   damping: 50,
 };
 
-export const SwipeCarousel = () => {
+export const SwipeCarousel: React.FC = () => {
   const [imgIndex, setImgIndex] = useState(0);
   const dragX = useMotionValue(0);
 
@@ -32,10 +32,10 @@ export const SwipeCarousel = () => {
           return pv + 1;
         });
       }
-    }, AUTO_DELAY); // Change image every 3 seconds
+    }, AUTO_DELAY);
 
     return () => clearInterval(intervalRef);
-  }, [dragX]); // Add dragX to the dependency array
+  }, [dragX]);
 
   const onDragEnd = () => {
     const x = dragX.get();
@@ -86,7 +86,11 @@ export const SwipeCarousel = () => {
   );
 };
 
-const Images = ({ imgIndex }) => {
+type ImagesProps = {
+  imgIndex: number;
+};
+
+const Images: React.FC<ImagesProps> = ({ imgIndex }) => {
   return (
     <>
       {imgs.map((imgSrc, idx) => (
@@ -108,7 +112,12 @@ const Images = ({ imgIndex }) => {
   );
 };
 
-const Dots = ({ imgIndex, setImgIndex }) => {
+type DotsProps = {
+  imgIndex: number;
+  setImgIndex: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const Dots: React.FC<DotsProps> = ({ imgIndex, setImgIndex }) => {
   return (
     <div className="mt-4 flex w-full justify-center gap-2">
       {imgs.map((_, idx) => (
@@ -124,7 +133,7 @@ const Dots = ({ imgIndex, setImgIndex }) => {
   );
 };
 
-const GradientEdges = () => {
+const GradientEdges: React.FC = () => {
   return (
     <>
       <div className="pointer-events-none absolute bottom-0 left-0 top-0 w-[10vw] max-w-[100px] bg-gradient-to-r from-neutral-950/50 to-neutral-950/0" />
