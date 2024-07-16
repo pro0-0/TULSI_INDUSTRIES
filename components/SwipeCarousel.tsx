@@ -35,7 +35,7 @@ export const SwipeCarousel = () => {
     }, AUTO_DELAY); // Change image every 3 seconds
 
     return () => clearInterval(intervalRef);
-  }, []);
+  }, [dragX]); // Add dragX to the dependency array
 
   const onDragEnd = () => {
     const x = dragX.get();
@@ -50,17 +50,16 @@ export const SwipeCarousel = () => {
   return (
     <div>
       <div className="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center py-5 pb-0">
-        <div className="w-full bg-white border-t border-b rounded-md  border-gray-200  px-5 py-16 md:py-24 text-gray-800">
+        <div className="w-full bg-white border-t border-b rounded-md border-gray-200 px-5 py-16 md:py-24 text-gray-800">
           <div
-            className="relative overflow-hidden bg-white py-8 "
+            className="relative overflow-hidden bg-white py-8"
             id="highlights"
           >
             <div className="absolute top-0 left-5 z-10 right-0 text-4xl sm:text-7xl">
               <p className="bg-gray-100 w-[68vw] sm:w-[67vh] text-center rounded-lg bg-clip-padding backdrop-filter border border-gray-100 backdrop-blur-sm bg-opacity-40 p-3 sm:p-5">
                 HIGHLIGHTS
               </p>
-            </div>{" "}
-            {/* Further reduced the height */}
+            </div>
             <motion.div
               drag="x"
               dragConstraints={{
@@ -80,7 +79,6 @@ export const SwipeCarousel = () => {
               <Images imgIndex={imgIndex} />
             </motion.div>
             <Dots imgIndex={imgIndex} setImgIndex={setImgIndex} />
-            {/* <GradientEdges /> */}
           </div>
         </div>
       </div>
@@ -91,23 +89,21 @@ export const SwipeCarousel = () => {
 const Images = ({ imgIndex }) => {
   return (
     <>
-      {imgs.map((imgSrc, idx) => {
-        return (
-          <motion.div
-            key={idx}
-            style={{
-              backgroundImage: `url(${imgSrc})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-            animate={{
-              scale: imgIndex === idx ? 0.95 : 0.85,
-            }}
-            transition={SPRING_OPTIONS}
-            className="aspect-video w-screen shrink-0 rounded-xl bg-neutral-800 object-cover  h-[400px] sm:h-[200px] lg:h-[600px]"
-          />
-        );
-      })}
+      {imgs.map((imgSrc, idx) => (
+        <motion.div
+          key={idx}
+          style={{
+            backgroundImage: `url(${imgSrc})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          animate={{
+            scale: imgIndex === idx ? 0.95 : 0.85,
+          }}
+          transition={SPRING_OPTIONS}
+          className="aspect-video w-screen shrink-0 rounded-xl bg-neutral-800 object-cover h-[400px] sm:h-[200px] lg:h-[600px]"
+        />
+      ))}
     </>
   );
 };
@@ -115,17 +111,15 @@ const Images = ({ imgIndex }) => {
 const Dots = ({ imgIndex, setImgIndex }) => {
   return (
     <div className="mt-4 flex w-full justify-center gap-2">
-      {imgs.map((_, idx) => {
-        return (
-          <button
-            key={idx}
-            onClick={() => setImgIndex(idx)}
-            className={`h-3 w-3 rounded-full transition-colors ${
-              idx === imgIndex ? "bg-neutral-900" : "bg-neutral-500"
-            }`}
-          />
-        );
-      })}
+      {imgs.map((_, idx) => (
+        <button
+          key={idx}
+          onClick={() => setImgIndex(idx)}
+          className={`h-3 w-3 rounded-full transition-colors ${
+            idx === imgIndex ? "bg-neutral-900" : "bg-neutral-500"
+          }`}
+        />
+      ))}
     </div>
   );
 };
